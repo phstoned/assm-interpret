@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller">
+   <children>
+      <TabPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" StackPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Основа">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#LoadListing" prefHeight="38.0" prefWidth="150.0" text="Загрузить листинг" />
+                        <Button layoutX="193.0" layoutY="89.0" mnemonicParsing="false" onAction="#resetAll" prefHeight="38.0" prefWidth="151.0" text="Сброс" />
+                        <TextArea fx:id="Terminal" editable="false" layoutX="21.0" layoutY="189.0" prefHeight="146.0" prefWidth="547.0" />
+                        <Label layoutX="29.0" layoutY="152.0" text="Терминал">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="bitwiseGrid" alignment="CENTER" layoutX="500.0" layoutY="39.0" onAction="#bitwiseChanged" prefHeight="22.0" prefWidth="69.0" promptText="1" />
+                        <TextField fx:id="org" alignment="CENTER" layoutX="500.0" layoutY="97.0" onAction="#orgChanged" prefHeight="22.0" prefWidth="68.0" promptText="00" />
+                        <Label layoutX="401.0" layoutY="31.0" prefHeight="39.0" prefWidth="57.0" text="Разрядная сетка" wrapText="true" />
+                        <Label layoutX="401.0" layoutY="79.0" prefHeight="58.0" prefWidth="74.0" text="Начало выполнения программы" wrapText="true" />
+                        <Button layoutX="21.0" layoutY="31.0" mnemonicParsing="false" onAction="#Translate" prefHeight="38.0" prefWidth="140.0" text="Транслировать" />
+                        <Button layoutX="21.0" layoutY="89.0" mnemonicParsing="false" onAction="#doStep" prefHeight="38.0" prefWidth="140.0" text="Шаг" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Мониторинг данных">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="ronTerminal" editable="false" layoutX="34.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="flagTerminal" editable="false" layoutX="333.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                        <Label layoutX="34.0" layoutY="14.0" text="Регистры общего назначения" />
+                        <Label layoutX="333.0" layoutY="14.0" text="Флаги" />
+                        <TextArea fx:id="ramTerminal" layoutX="34.0" layoutY="268.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                        <Label layoutX="34.0" layoutY="254.0" text="Оперативная память" />
+                        <Label layoutX="349.0" layoutY="254.0" text="CчАК" />
+                        <TextField fx:id="orgAK" editable="false" layoutX="349.0" layoutY="280.0" />
+                        <Label layoutX="333.0" layoutY="390.0" text="Загрузка оперативной памяти" />
+                        <ProgressIndicator fx:id="progress" layoutX="496.0" layoutY="376.0" prefHeight="41.0" prefWidth="44.0" progress="0.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Информация">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="22.0" text="Вариант 1" />
+                        <Label layoutX="29.0" layoutY="44.0" text="Команда по варианту:" />
+                        <Label layoutX="29.0" layoutY="66.0" text="OR" />
+                        <Label layoutX="273.0" layoutY="22.0" prefHeight="12.0" prefWidth="157.0" text="Доступные команды:" />
+                        <Label layoutX="271.0" layoutY="44.0" text="ORG" />
+                        <Label layoutX="271.0" layoutY="59.0" text="MOV" />
+                        <Label layoutX="270.0" layoutY="73.0" text="MOVR" />
+                        <Label layoutX="270.0" layoutY="87.0" text="HALT" />
+                        <Label layoutX="270.0" layoutY="101.0" text="JC" />
+                        <Label layoutX="270.0" layoutY="115.0" text="JNZ" />
+                        <Label layoutX="269.0" layoutY="129.0" text="OR" />
+                        <Label layoutX="27.0" layoutY="166.0" text="Объем памяти: 128" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Файлы">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" onMouseMoved="#getPath" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="37.0" layoutY="41.0" text="Выходной файл размещен по адресу:" />
+                        <TextField fx:id="outPath" editable="false" layoutX="265.0" layoutY="37.0" prefHeight="22.0" prefWidth="263.0">
+                           <font>
+                              <Font name="System Bold Italic" size="8.0" />
+                           </font></TextField>
+                        <Button layoutX="271.0" layoutY="93.0" mnemonicParsing="false" onAction="#openOutFile" text="Открыть" />
+                        <Label layoutX="37.0" layoutY="97.0" text="Открыть выходной файл" />
+                        <Label layoutX="37.0" layoutY="144.0" text="Открыть входной файл(листинг)" />
+                        <Button layoutX="271.0" layoutY="140.0" mnemonicParsing="false" onAction="#openInFile" text="Открыть" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</StackPane>
